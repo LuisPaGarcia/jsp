@@ -1,7 +1,7 @@
 <%-- 
     Document   : index
     Created on : Oct 16, 2019, 8:07:17 PM
-    Author     : admin
+    Author     : Jorge Alejandro
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -9,13 +9,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Inicio</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <form action="guardar" id="form" name="form" onsubmit="return isValidForm()">
+        <h1>Ingrese su informacion</h1>
+        <form action="guardar" id="form" name="form" onsubmit="return esValido()">
             <label htmlFor="altura">
-                Altura: <input type="number" name="altura" /> 
+                Altura: <input type="number" name="altura" step="0.01"/> 
             </label>
             <label htmlFor="medidaAltura">
                 <input type="radio" name="medidaAltura" value="metros"> Metros
@@ -24,7 +24,7 @@
             <br />
             <br />
             <label htmlFor="peso">
-                Peso: <input type="number" name="peso" /> 
+                Peso: <input type="number" name="peso" step="0.01" /> 
             </label>
             <label htmlFor="medidaPeso">
                 <input type="radio" name="medidaPeso" value="kilos"> Kilos            
@@ -36,14 +36,13 @@
             <input type="submit" value="Calcular" />
         </form>
         <script>
-            function isValidForm(e){
+            function esValido(e){
                 var altura = document.forms["form"]["altura"].value;
                 var medidaAltura = document.forms["form"]["medidaAltura"].value;
                 var peso = document.forms["form"]["peso"].value;
                 var medidaPeso = document.forms["form"]["medidaPeso"].value;
                 var valido = true;
                 if(!altura || !medidaAltura || !peso || !medidaPeso){
-                    console.log(altura, medidaAltura, peso, medidaPeso);
                     valido = false;
                 }
                 return valido;

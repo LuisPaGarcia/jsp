@@ -37,28 +37,35 @@ public class guardar extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         {
-            medidaPeso = request.getParameter("medidaPeso");
-            medidaAltura = request.getParameter("medidaAltura");
+            medidaPeso = request.getParameter("medidaPeso"); // libras
+            medidaAltura = request.getParameter("medidaAltura"); //metros
  
-            altura = Double.parseDouble(request.getParameter("altura"));
-            peso = Double.parseDouble(request.getParameter("peso"));
-
-            if (medidaPeso.equals(clibras)){
+            altura = Double.parseDouble(request.getParameter("altura")); //1.9
+            peso = Double.parseDouble(request.getParameter("peso"));  //200
+               
+            // Si medidapeos = libras -> Transformar libras a Kilogramos
+            if ( medidaPeso.equals(clibras) ){
               peso = librasAKilos(peso);
             } 
 
+            // Si medidaAltura = pies -> Transformar pies a Metros
             if (medidaAltura.equals(cpies)){
               altura = piesAMetros(altura);
             } 
             
+            // Ya se transformaron  los valores (ya todo es kilo o es metro)
             alturaCuadrado = altura * altura;
+            
+            // Aqui ya tenemos todo para hacer la operacion
             resultado = calculoIMC(peso, alturaCuadrado);
+            
+            // Agregar validaciones de rangos de IMC (los de la tablita)
+            
             
             getServletContext().setAttribute("peso", formatear(peso));            
             getServletContext().setAttribute("altura", formatear(altura));
             getServletContext().setAttribute("alturaCuadrado", formatear(alturaCuadrado));
             getServletContext().setAttribute("resultado", formatear(resultado));
-            
             request.getRequestDispatcher("resultados.jsp").forward(request, response);
             
         }

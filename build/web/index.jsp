@@ -12,39 +12,53 @@
         <title>Inicio</title>
     </head>
     <body>
+        
         <h1>Ingrese su informacion</h1>
+        
         <form action="guardar" id="form" name="form" onsubmit="return esValido()">
-            <label htmlFor="altura">
-                Altura: <input type="number" name="altura" step="0.01"/> 
-            </label>
-            <label htmlFor="medidaAltura">
-                <input type="radio" name="medidaAltura" value="metros"> Metros
-                <input type="radio" name="medidaAltura" value="pies"> Pies<br>
-            </label>
-            <br />
-            <br />
-            <label htmlFor="peso">
-                Peso: <input type="number" name="peso" step="0.01" /> 
-            </label>
-            <label htmlFor="medidaPeso">
-                <input type="radio" name="medidaPeso" value="kilos"> Kilos            
-                <input type="radio" name="medidaPeso" value="libras">Libras<br>            
-            </label>                        
+            
+            <label htmlFor="altura">Altura: </label>
+            <input type="number" name="altura" step="0.01"/> 
+            
+            <input type="radio" name="medidaAltura" value="metros"> Metros
+            <input type="radio" name="medidaAltura" value="pies"> Pies<br>
+
+            
             <br />
             <br />
             
-            <input type="submit" value="Calcular" />
+            
+            <label htmlFor="peso">Peso: </label>
+            <input type="number" name="peso" step="0.01" /> 
+
+            <input type="radio" name="medidaPeso" value="kilos"> Kilos            
+            <input type="radio" name="medidaPeso" value="libras">Libras<br>            
+
+            <br />
+            <br />
+            
+            <input type="submit" value="Calcular Ale" />
         </form>
+        <!-- 
+        <p id="mensajito"></p>
+        -->
         <script>
             function esValido(e){
-                var altura = document.forms["form"]["altura"].value;
-                var medidaAltura = document.forms["form"]["medidaAltura"].value;
+                
+                var altura = document.forms.form.altura.value;
+                var medidaAltura = document.forms.form.medidaAltura.value;
                 var peso = document.forms["form"]["peso"].value;
                 var medidaPeso = document.forms["form"]["medidaPeso"].value;
-                var valido = true;
-                if(!altura || !medidaAltura || !peso || !medidaPeso){
+                
+                var valido;
+                
+                if(altura === '' || medidaAltura === ''  || peso === ''  || medidaPeso === ''){
                     valido = false;
+                    //document.getElementById('mensajito2').innerText = "FALTA ALGO"
+                } else {
+                    valido = true;
                 }
+                
                 return valido;
             };
         </script>
